@@ -2,15 +2,23 @@
   {{title}}
 </h1>
 
+<ul>
+  <li *ngFor="let display_message of mail.messages"> {{display_message.text}}</li>
+</ul>
 <div>
-  <app-simple-form></app-simple-form>
+  <app-simple-form
+  *ngFor="let message of mail.messages"
+  [display_message]="message.text"
+  (update)="onUpdate(message.id, $event.text)"
+  >
+  </app-simple-form>
 </div>
 
-<ul>
+<!-- <ul>
   <li *ngFor="let message of mail.messages">
     {{message}}
   </li>
-</ul>
+</ul> -->
 <hr/>
 
 {{api}}
